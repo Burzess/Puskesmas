@@ -61,11 +61,11 @@ public class SelectPoliView extends Frame {
                         new HomePasien().setVisible(true);
                     } else {
                         Antrian antrian = poliController.getAntrian(selectedPoli, pasien.NIK);
-                        String massage = "Anda telah mendapatkan" +
-                                "\nno antrian " + antrian.index + "di Poli " + selectedPoli +
-                                "\nSilahkan ke poli " + selectedPoli +
-                                "\ndan menunggu giliran anda " + "TERIMAKASIH :)";
-                        JOptionPane.showMessageDialog(null, massage, "informasi", JOptionPane.INFORMATION_MESSAGE );
+                        String message = "<html><center>Anda telah mendapatkan" +
+                                "<br>no antrian " + antrian.index + " di Poli " + selectedPoli +
+                                "<br>Silahkan ke poli " + selectedPoli +
+                                "<br>dan menunggu giliran anda" + "<br>TERIMAKASIH :)</center></html>";
+                        JOptionPane.showMessageDialog(null, message, "informasi", JOptionPane.INFORMATION_MESSAGE );
                     }
                 }
             });
