@@ -54,7 +54,7 @@ public class PanggilAntrian extends Frame {
                         JOptionPane.showMessageDialog(null, massage, "Detail Antrian", JOptionPane.INFORMATION_MESSAGE);
                         HomePasien.setInformation(massage);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Tidak ada antrian tersisa", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Antrian poli " + selectedPoli + " sudah habis", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             });
