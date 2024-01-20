@@ -31,16 +31,29 @@ public class ManageJadwalPraktekView extends JFrame {
     private void initialize() {
         String[] columnNames = {"Nama Dokter", "Hari", "Jam Praktek"};
         List<JadwalPraktek> jadwalList = jadwalPraktekController.getAllJadwalPraktek();
-        Object[][] data = new Object[jadwalList.size()][3];
-        for (int i = 0; i < jadwalList.size(); i++) {
-            JadwalPraktek jadwal = jadwalList.get(i);
-            data[i][0] = jadwal.getNamaDokter();
-            data[i][1] = jadwal.getHari();
-            data[i][2] = jadwal.getJamPraktek();
-        }
 
-        jadwalTableModel = new DefaultTableModel(data, columnNames);
-        jadwalTable = new JTable(jadwalTableModel);
+        if (jadwalList != null && !jadwalList.isEmpty()) {
+            Object[][] data = new Object[jadwalList.size()][3];
+
+            for (int i = 0; i < jadwalList.size(); i++) {
+                JadwalPraktek jadwal = jadwalList.get(i);
+                data[i][0] = jadwal.getNamaDokter();
+                data[i][1] = jadwal.getHari();
+                data[i][2] = jadwal.getJamPraktek();
+            }
+
+            jadwalTableModel = new DefaultTableModel(data, columnNames);
+            jadwalTable = new JTable(jadwalTableModel);
+            JScrollPane scrollPane = new JScrollPane(jadwalTable);
+            add(scrollPane, BorderLayout.CENTER);
+        } else {
+            jadwalTableModel = new DefaultTableModel(new Object[0][0], columnNames);
+            jadwalTable = new JTable(jadwalTableModel);
+
+            JLabel jadwalKosongLabel = new JLabel("Jadwal Praktek Kosong");
+            jadwalKosongLabel.setHorizontalAlignment(JLabel.CENTER);
+            add(jadwalKosongLabel, BorderLayout.CENTER);
+        }
 
         JButton addButton = new JButton("Tambah Jadwal");
         addButton.addActionListener(new ActionListener() {
@@ -57,7 +70,7 @@ public class ManageJadwalPraktekView extends JFrame {
         });
 
         JButton kembaliButton = new JButton("Kembali");
-        kembaliButton.addActionListener( e -> {
+        kembaliButton.addActionListener(e -> {
             dispose();
             new HomdeAdmin().setVisible(true);
         });
@@ -67,10 +80,9 @@ public class ManageJadwalPraktekView extends JFrame {
         buttonPanel.add(addButton);
         buttonPanel.add(updateButton);
 
-        JScrollPane scrollPane = new JScrollPane(jadwalTable);
-        add(scrollPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
+
     private void tambahJadwal() {
         JPanel panel = new JPanel(new GridLayout(3, 2));
         JTextField namaDokterField = new JTextField();
@@ -96,6 +108,7 @@ public class ManageJadwalPraktekView extends JFrame {
                 jadwalPraktekController.tambahJadwalPraktek(namaDokter,hari,jamPraktek);
                 Object[] rowData = {namaDokter, hari, jamPraktek};
                 jadwalTableModel.addRow(rowData);
+                jadwalTableModel.fireTableDataChanged();
             }
         }
     }

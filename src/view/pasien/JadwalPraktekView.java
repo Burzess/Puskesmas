@@ -27,16 +27,25 @@ public class JadwalPraktekView extends JFrame {
         JadwalPraktekController jadwalPraktekController = new JadwalPraktekController();
         String[] columnNames = {"Nama Dokter", "Hari", "Jam Praktek"};
         List<JadwalPraktek> jadwalList = jadwalPraktekController.getAllJadwalPraktek();
-        Object[][] data = new Object[jadwalList.size()][3];
-        for (int i = 0; i < jadwalList.size(); i++) {
-            JadwalPraktek jadwal = jadwalList.get(i);
-            data[i][0] = jadwal.getNamaDokter();
-            data[i][1] = jadwal.getHari();
-            data[i][2] = jadwal.getJamPraktek();
-        }
 
-        jadwalTableModel = new DefaultTableModel(data, columnNames);
-        jadwalTable = new JTable(jadwalTableModel);
+        if (jadwalList != null && !jadwalList.isEmpty()) {
+            Object[][] data = new Object[jadwalList.size()][3];
+            for (int i = 0; i < jadwalList.size(); i++) {
+                JadwalPraktek jadwal = jadwalList.get(i);
+                data[i][0] = jadwal.getNamaDokter();
+                data[i][1] = jadwal.getHari();
+                data[i][2] = jadwal.getJamPraktek();
+            }
+
+            jadwalTableModel = new DefaultTableModel(data, columnNames);
+            jadwalTable = new JTable(jadwalTableModel);
+            JScrollPane scrollPane = new JScrollPane(jadwalTable);
+            add(scrollPane, BorderLayout.CENTER);
+        } else {
+            JLabel jadwalKosongLabel = new JLabel("Jadwal Praktek Kosong");
+            jadwalKosongLabel.setHorizontalAlignment(JLabel.CENTER);
+            add(jadwalKosongLabel, BorderLayout.CENTER);
+        }
 
         JButton kembali = new JButton("Kembali");
         kembali.addActionListener(new ActionListener() {
@@ -48,9 +57,6 @@ public class JadwalPraktekView extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(kembali);
-
-        JScrollPane scrollPane = new JScrollPane(jadwalTable);
-        add(scrollPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
 }

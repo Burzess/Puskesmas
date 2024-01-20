@@ -6,18 +6,22 @@ import node.JadwalPraktek;
 import java.util.List;
 
 public class JadwalPraktekController {
+    JadwalPraktekModel jadwalPraktekModel;
+    public JadwalPraktekController(){
+        jadwalPraktekModel = new JadwalPraktekModel();
+    }
 
     public void tambahJadwalPraktek(String nameDokter, String hari, String jamPraktek) {
-        int id = JadwalPraktekModel.getLastId() + 1;
-        JadwalPraktekModel.tambahJadwalPraktek(nameDokter, hari, jamPraktek);
+        int id = JadwalPraktekModel.getLastId();
+        jadwalPraktekModel.tambahJadwalPraktek(nameDokter, hari, jamPraktek);
     }
 
     public void updateJadwalPraktek(int id, String namaDokter, String hari, String jamPraktek) {
-        JadwalPraktekModel.updateJadwalPraktek(id, namaDokter, hari, jamPraktek);
+        jadwalPraktekModel.updateJadwalPraktek(id, namaDokter, hari, jamPraktek);
     }
 
     public List<JadwalPraktek> getAllJadwalPraktek() {
-        return JadwalPraktekModel.getAllJadwalPraktek();
+        return jadwalPraktekModel.getAllJadwalPraktek();
     }
 }
 
