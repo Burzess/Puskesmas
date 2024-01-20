@@ -21,6 +21,17 @@ public class ModelAntrain {
         modelGSON.writeToFile(listAntrain);
     }
 
+    public void deleteAntrian(String namaPoli){
+        if (listAntrain == null){
+            return;
+        }
 
-
+        for (Antrian antrian : listAntrain) {
+            if (antrian.poli.equals(namaPoli)) {
+                listAntrain.remove(antrian);
+                modelGSON.writeToFile(listAntrain);
+                return;
+            }
+        }
+    }
 }

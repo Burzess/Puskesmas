@@ -42,6 +42,18 @@ public class PoliController {
         return status;
     }
 
+    public Antrian getNextAntrian(String namaPoli) {
+        for (Poli poli : modelPoli.getListPoli()) {
+            if (poli.namaPoli.equals(namaPoli) && !poli.antrians.isEmpty()) {
+                Antrian nextAntrian = poli.antrians.getFirst();
+                modelPoli.deleteAntrianPoli(poli.namaPoli);
+                modelAntrain.deleteAntrian(poli.namaPoli);
+                return nextAntrian;
+            }
+        }
+        return null;
+    }
+
     public Antrian getAntrian(String namaPoli, String pasien){
         return modelPoli.getAntrianPoli(namaPoli, pasien);
     }
