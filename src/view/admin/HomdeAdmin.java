@@ -48,6 +48,14 @@ public class HomdeAdmin extends Frame {
         bt3.setForeground(Color.WHITE);
         add(bt3);
 
+        bt4 = new JButton("Panggil Antrian");
+        bt4.setFont(fontButton);
+        bt4.setBounds(80, 340, 230, 24);
+        bt4.setFocusPainted(false);
+        bt4.setBackground(new Color(135, 206, 250));
+        bt4.setForeground(Color.WHITE);
+        add(bt4);
+
         backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -83,17 +91,21 @@ public class HomdeAdmin extends Frame {
         });
 
         bt2.addActionListener(e -> {
-//            dispose();
-//            new ManageJadwalPraktekView();
+            dispose();
+            new ManageJadwalPraktekView();
         });
 
         bt3.addActionListener(e -> {
             dispose();
 //            new CetakTransaksiView();
         });
+
+        bt4.addActionListener(e -> {
+            dispose();
+            new PanggilAntrian().setVisible(true);});
     }
 
-    public static void main(String[] args) {
-        new HomdeAdmin().setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        new HomdeAdmin().setVisible(true);
+//    }
 }

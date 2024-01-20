@@ -72,4 +72,18 @@ public class ModelPoli {
         }
         return null;
     }
+
+    public void deleteAntrianPoli(String poli) {
+        for (Poli polis : listPoli) {
+            if (polis.namaPoli.equals(poli)){
+                if (!polis.antrians.isEmpty()) {
+                    Antrian antrian = listPoli.get(getPoli(poli).idPoli).antrians.getFirst();
+                    listPoli.get(polis.idPoli).antrians.remove(antrian);
+                }
+            }
+        }
+        modelGSON.writeToFile(listPoli);
+    }
+
+
 }

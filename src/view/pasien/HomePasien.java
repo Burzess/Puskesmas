@@ -11,14 +11,45 @@ import static assets.Assets.*;
 
 public class HomePasien extends Frame {
     JLabel header;
+    static JLabel information = new JLabel("");
     JButton bt1, bt2, bt3;
     JPanel backgroundPanel;
 
     public HomePasien() {
-        super("Puskesmas", 300, 400);
+        super("Home Pasien", 300, 400);
+        setLocation(40, 200);
+        setLayout(new BorderLayout());
+    }
+
+    private void startTextAnimation() {
+        Timer timer = new Timer(1, new ActionListener() {
+            private int xPosition = getWidth();
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                moveText();
+            }
+
+            private void moveText() {
+                xPosition -= 2;
+                information.setBounds(xPosition, 0, 600, 30);
+
+                if (xPosition + information.getWidth() < 0) {
+                    xPosition = getWidth();
+                }
+            }
+        });
+
+        timer.start();
     }
 
     protected void component() {
+        information.setText("Selamat Datang di Puskesmas Haha Hihi \uD83D\uDE02");
+        information.setFont(new Font("JoyPixels ", Font.BOLD, 16));
+        information.setHorizontalAlignment(JLabel.CENTER);
+        information.setVerticalAlignment(JLabel.CENTER);
+        add(information);
+
         header = new JLabel("<html><center>PUSKESMAS</center><center>HAHA HIHI</center></html>");
         header.setBounds(71, 50, 200, 96);
         header.setFont(fontHeader);
@@ -60,8 +91,8 @@ public class HomePasien extends Frame {
                 Image logoImage = logoIcon.getImage();
                 g2d.drawImage(logoImage, 70, 20, 150, 215, this);
 
-                GradientPaint gradient = new GradientPaint(0, 0, new Color(3, 255, 255, 220),
-                        0, height, new Color(3, 255, 255, 220));
+                GradientPaint gradient = new GradientPaint(0, 0, new Color(255, 255, 255, 220),
+                        0, height, new Color(255, 255, 255, 220));
                 g2d.setPaint(gradient);
                 g2d.fillRect(0, 0, width, height);
 
@@ -72,6 +103,8 @@ public class HomePasien extends Frame {
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, 300, 430);
         add(backgroundPanel);
+
+        startTextAnimation();
     }
 
     public void event(){
@@ -99,6 +132,9 @@ public class HomePasien extends Frame {
         });
     }
 
+    public static void setInformation(String information) {
+        HomePasien.information.setText(information);
+    }
 
 //
 //    public static void main(String[] args) {

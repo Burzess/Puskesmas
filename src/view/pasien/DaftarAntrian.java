@@ -19,7 +19,6 @@ public class DaftarAntrian extends Frame {
 
     public DaftarAntrian() {
         super("Daftar Antrian", 600, 300);
-//        setLayout(null);
         pasienController = new PasienController();
     }
 
@@ -72,7 +71,7 @@ public class DaftarAntrian extends Frame {
                 } else {
                     Pasien pasien1 = pasienController.getPasien(nikField.getText());
                     if (pasien1 == null) {
-                        JOptionPane.showMessageDialog(null, "NIK Tidak Terdaftar/No BPJS Tidak Terdaftar :V");
+                        JOptionPane.showMessageDialog(null, "NIK Tidak/No BPJS Tidak Terdaftar :V");
                     } else {
                         dispose();
                         new SelectPoliView(pasien1).setVisible(true);

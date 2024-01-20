@@ -22,4 +22,7 @@ public class Poli {
     public void addAntrian(Antrian antrian) {
         this.antrians.add(antrian);
     }
+    public void deleteAntrian(Antrian antrian){
+        this.antrians.remove(antrian);
+    }
 }
