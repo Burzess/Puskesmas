@@ -1,15 +1,1 @@
-[
-  {
-    "index": 1,
-    "pasien": {
-      "idPasien": 1,
-      "namaPasien": "Halim",
-      "alamat": "SBY",
-      "gender": "Laki-laki",
-      "TTL": "16-01-2024",
-      "NIK": "123",
-      "BPJS": ""
-    },
-    "poli": "Gizi"
-  }
-]
+[]

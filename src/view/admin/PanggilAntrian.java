@@ -1,6 +1,7 @@
 package view.admin;
 
 import controller.PoliController;
+import controller.TransaksiController;
 import node.Antrian;
 import node.Pasien;
 import node.Poli;
@@ -17,9 +18,11 @@ public class PanggilAntrian extends Frame {
     JLabel titleLabel;
     JButton btnKembali;
     PoliController poliController;
+    TransaksiController transaksiController;
     public PanggilAntrian() {
         super("Pilih Poli", 350, 400);
         poliController = new PoliController();
+        transaksiController = new TransaksiController();
         setLayout(new BorderLayout());
     }
 
@@ -51,8 +54,9 @@ public class PanggilAntrian extends Frame {
                     Antrian nextAntrian = poliController.getNextAntrian(selectedPoli);
                     if (nextAntrian != null) {
                         String massage = "PANGGILAN UNTUK NO ANTRIAN " + nextAntrian.index + " DI TUNGGUN DI POLI " +  nextAntrian.poli.toUpperCase();
-                        JOptionPane.showMessageDialog(null, massage, "Detail Antrian", JOptionPane.INFORMATION_MESSAGE);
                         HomePasien.setInformation(massage);
+                        JOptionPane.showMessageDialog(null, massage, "Detail Antrian", JOptionPane.INFORMATION_MESSAGE);
+                        transaksiController.addTransaksi(nextAntrian);
                     } else {
                         JOptionPane.showMessageDialog(null, "Antrian poli " + selectedPoli + " sudah habis", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     }
