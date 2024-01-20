@@ -14,6 +14,7 @@ public class HomePasien extends Frame {
     static JLabel information = new JLabel("");
     JButton bt1, bt2, bt3;
     JPanel backgroundPanel;
+    Timer timer;
 
     public HomePasien() {
         super("Home Pasien", 300, 400);
@@ -21,13 +22,26 @@ public class HomePasien extends Frame {
         setLayout(new BorderLayout());
     }
 
+    private void stopTextAnimation() {
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+    }
+
     private void startTextAnimation() {
-        Timer timer = new Timer(1, new ActionListener() {
+        timer = new Timer(1, new ActionListener() {
             private int xPosition = getWidth();
+            private int rounds = 0;
+            private int maxRounds = 2;
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveText();
+                if (rounds >= maxRounds * 2) {
+                    xPosition = getWidth();
+                    rounds = 0;
+                    setInformation("Selamat Datang di Puskesmas Haha Hihi \uD83D\uDE02");
+                }
             }
 
             private void moveText() {
@@ -36,6 +50,8 @@ public class HomePasien extends Frame {
 
                 if (xPosition + information.getWidth() < 0) {
                     xPosition = getWidth();
+                    System.out.println("Rounds:" + rounds);
+                    rounds++;
                 }
             }
         });
@@ -112,6 +128,7 @@ public class HomePasien extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Pasien baru");
+                stopTextAnimation();
                 dispose();
                 new FormDataPasienView().setVisible(true);
             }
@@ -121,14 +138,17 @@ public class HomePasien extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Ambil antrian");
+                stopTextAnimation();
                 dispose();
                 new DaftarAntrian().setVisible(true);
             }
         });
 
         bt3.addActionListener( e -> {
-//            dispose();
-//            new JadwalPraktekView().setVisible(true);
+            System.out.println("lihat jadwal praktek");
+            stopTextAnimation();
+            dispose();
+            new JadwalPraktekView().setVisible(true);
         });
     }
 
