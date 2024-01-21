@@ -5,11 +5,21 @@ public class JadwalPraktek {
     private String namaDokter;
     private String hari;
     private String jamPraktek;
+    private String poli;
 
-    public JadwalPraktek(String namaDokter, String hari, String jamPraktek) {
+    public JadwalPraktek(String namaDokter, String hari, String jamPraktek, String poli) {
         this.namaDokter = namaDokter;
         this.hari = hari;
         this.jamPraktek = jamPraktek;
+        this.poli = poli;
+    }
+
+    public String getPoli() {
+        return poli;
+    }
+
+    public void setPoli(String poli) {
+        this.poli = poli;
     }
 
     public String getNamaDokter() {

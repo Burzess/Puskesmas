@@ -11,13 +11,13 @@ public class JadwalPraktekController {
         jadwalPraktekModel = new JadwalPraktekModel();
     }
 
-    public void tambahJadwalPraktek(String nameDokter, String hari, String jamPraktek) {
+    public void tambahJadwalPraktek(String nameDokter, String hari, String jamPraktek, String poli) {
         int id = JadwalPraktekModel.getLastId();
-        jadwalPraktekModel.tambahJadwalPraktek(nameDokter, hari, jamPraktek);
+        jadwalPraktekModel.tambahJadwalPraktek(nameDokter, hari, jamPraktek, poli);
     }
 
-    public void updateJadwalPraktek(int id, String namaDokter, String hari, String jamPraktek) {
-        jadwalPraktekModel.updateJadwalPraktek(id, namaDokter, hari, jamPraktek);
+    public void updateJadwalPraktek(int id, String namaDokter, String hari, String jamPraktek, String poli) {
+        jadwalPraktekModel.updateJadwalPraktek(id, namaDokter, hari, jamPraktek, poli);
     }
 
     public List<JadwalPraktek> getAllJadwalPraktek() {

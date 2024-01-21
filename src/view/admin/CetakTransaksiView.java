@@ -1,8 +1,5 @@
 package view.admin;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import controller.TransaksiController;
 import node.Transaksi;
 
@@ -12,7 +9,6 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
@@ -120,7 +116,7 @@ public class CetakTransaksiView extends JFrame {
         JButton kembaliButton = new JButton("Kembali");
         kembaliButton.addActionListener(e -> {
             dispose();
-            new HomdeAdmin().setVisible(true);
+            new HomeAdmin().setVisible(true);
         });
 
         JPanel buttonPanel = new JPanel();

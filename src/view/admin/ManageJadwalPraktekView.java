@@ -1,7 +1,9 @@
 package view.admin;
-import controller.JadwalPraktekController;
-import node.JadwalPraktek;
 
+import controller.JadwalPraktekController;
+import controller.PoliController;
+import node.JadwalPraktek;
+import node.Poli;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,11 +15,12 @@ import java.util.List;
 public class ManageJadwalPraktekView extends JFrame {
     private DefaultTableModel jadwalTableModel;
     private JTable jadwalTable;
-
+    private PoliController poliController;
     private JadwalPraktekController jadwalPraktekController;
     private String[] daftarHari = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"};
 
     public ManageJadwalPraktekView() {
+        poliController = new PoliController();
         jadwalPraktekController = new JadwalPraktekController();
         setTitle("Manage Jadwal Praktek Dokter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,17 +32,18 @@ public class ManageJadwalPraktekView extends JFrame {
     }
 
     private void initialize() {
-        String[] columnNames = {"Nama Dokter", "Hari", "Jam Praktek"};
+        String[] columnNames = {"Nama Dokter", "Hari", "Poli", "Jam Praktek"};
         List<JadwalPraktek> jadwalList = jadwalPraktekController.getAllJadwalPraktek();
 
         if (jadwalList != null && !jadwalList.isEmpty()) {
-            Object[][] data = new Object[jadwalList.size()][3];
+            Object[][] data = new Object[jadwalList.size()][4];
 
             for (int i = 0; i < jadwalList.size(); i++) {
                 JadwalPraktek jadwal = jadwalList.get(i);
                 data[i][0] = jadwal.getNamaDokter();
                 data[i][1] = jadwal.getHari();
-                data[i][2] = jadwal.getJamPraktek();
+                data[i][2] = jadwal.getPoli();
+                data[i][3] = jadwal.getJamPraktek();
             }
 
             jadwalTableModel = new DefaultTableModel(data, columnNames);
@@ -56,23 +60,17 @@ public class ManageJadwalPraktekView extends JFrame {
         }
 
         JButton addButton = new JButton("Tambah Jadwal");
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tambahJadwal();
-            }
-        });
+        addButton.setFocusPainted(false);
+        addButton.addActionListener(e -> tambahJadwal());
 
         JButton updateButton = new JButton("Update Jadwal");
-        updateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                updateJadwal();
-            }
-        });
+        updateButton.setFocusPainted(false);
+        updateButton.addActionListener(e -> updateJadwal());
 
         JButton kembaliButton = new JButton("Kembali");
         kembaliButton.addActionListener(e -> {
             dispose();
-            new HomdeAdmin().setVisible(true);
+            new HomeAdmin().setVisible(true);
         });
 
         JPanel buttonPanel = new JPanel();
@@ -84,15 +82,19 @@ public class ManageJadwalPraktekView extends JFrame {
     }
 
     private void tambahJadwal() {
-        JPanel panel = new JPanel(new GridLayout(3, 2));
+        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
         JTextField namaDokterField = new JTextField();
+        String[] daftarPoli = poliController.getAll().stream().map(poli -> poli.namaPoli).toArray(String[]::new);
         JComboBox<String> hariComboBox = new JComboBox<>(daftarHari);
+        JComboBox<String> poliComboBox = new JComboBox<>(daftarPoli);
         JTextField jamPraktekField = new JTextField();
 
         panel.add(new JLabel("Nama Dokter:"));
         panel.add(namaDokterField);
         panel.add(new JLabel("Hari:"));
         panel.add(hariComboBox);
+        panel.add(new JLabel("Poli"));
+        panel.add(poliComboBox);
         panel.add(new JLabel("Jam Praktek:"));
         panel.add(jamPraktekField);
 
@@ -101,14 +103,15 @@ public class ManageJadwalPraktekView extends JFrame {
             String namaDokter = namaDokterField.getText();
             String hari = hariComboBox.getSelectedItem().toString();
             String jamPraktek = jamPraktekField.getText();
+            String poli = poliComboBox.getSelectedItem().toString();
 
-            if (namaDokter.isEmpty() || hari.isEmpty() || jamPraktek.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                jadwalPraktekController.tambahJadwalPraktek(namaDokter,hari,jamPraktek);
-                Object[] rowData = {namaDokter, hari, jamPraktek};
+            if (isDataValid(namaDokter, hari, jamPraktek)) {
+                jadwalPraktekController.tambahJadwalPraktek(namaDokter, hari, jamPraktek, poli);
+                Object[] rowData = {namaDokter, hari, poli, jamPraktek};
                 jadwalTableModel.addRow(rowData);
                 jadwalTableModel.fireTableDataChanged();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -116,16 +119,22 @@ public class ManageJadwalPraktekView extends JFrame {
     private void updateJadwal() {
         int selectedRow = jadwalTable.getSelectedRow();
         if (selectedRow != -1) {
-            JPanel panel = new JPanel(new GridLayout(3, 2));
+            JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
             JTextField namaDokterField = new JTextField(jadwalTableModel.getValueAt(selectedRow, 0).toString());
             JComboBox<String> hariComboBox = new JComboBox<>(daftarHari);
             hariComboBox.setSelectedItem(jadwalTableModel.getValueAt(selectedRow, 1).toString());
-            JTextField jamPraktekField = new JTextField(jadwalTableModel.getValueAt(selectedRow, 2).toString());
+            JTextField jamPraktekField = new JTextField(jadwalTableModel.getValueAt(selectedRow, 3).toString());
+
+            String[] daftarPoli = poliController.getAll().stream().map(poli -> poli.namaPoli).toArray(String[]::new);
+            JComboBox<String> poliComboBox = new JComboBox<>(daftarPoli);
+            poliComboBox.setSelectedItem(jadwalTableModel.getValueAt(selectedRow, 2).toString());
 
             panel.add(new JLabel("Nama Dokter:"));
             panel.add(namaDokterField);
             panel.add(new JLabel("Hari:"));
             panel.add(hariComboBox);
+            panel.add(new JLabel("Poli:"));
+            panel.add(poliComboBox);
             panel.add(new JLabel("Jam Praktek:"));
             panel.add(jamPraktekField);
 
@@ -134,23 +143,28 @@ public class ManageJadwalPraktekView extends JFrame {
                 String namaDokter = namaDokterField.getText();
                 String hari = hariComboBox.getSelectedItem().toString();
                 String jamPraktek = jamPraktekField.getText();
+                String poli = poliComboBox.getSelectedItem().toString();
 
-                if (namaDokter.isEmpty() || hari.isEmpty() || jamPraktek.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    jadwalPraktekController.updateJadwalPraktek(selectedRow, namaDokter, hari , jamPraktek);
+                if (isDataValid(namaDokter, hari, jamPraktek)) {
+                    jadwalPraktekController.updateJadwalPraktek(selectedRow, namaDokter, hari, jamPraktek, poli);
                     jadwalTableModel.setValueAt(namaDokter, selectedRow, 0);
                     jadwalTableModel.setValueAt(hari, selectedRow, 1);
-                    jadwalTableModel.setValueAt(jamPraktek, selectedRow, 2);
+                    jadwalTableModel.setValueAt(poli, selectedRow, 2);
+                    jadwalTableModel.setValueAt(jamPraktek, selectedRow, 3);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Pilih baris pada tabel untuk melakukan pembaruan.", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
+
+    private boolean isDataValid(String namaDokter, String hari, String jamPraktek) {
+        return !namaDokter.isEmpty() && !hari.isEmpty() && !jamPraktek.isEmpty();
+    }
 //
 //    public static void main(String[] args) {
-//        JadwalPraktekModel.init();
 //        SwingUtilities.invokeLater(() -> new ManageJadwalPraktekView());
 //    }
 }
