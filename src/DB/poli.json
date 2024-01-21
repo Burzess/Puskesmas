@@ -16,5 +16,11 @@
     "namaPoli": "Gizi",
     "dokters": [],
     "antrians": []
+  },
+  {
+    "idPoli": 3,
+    "namaPoli": "P2M",
+    "dokters": [],
+    "antrians": []
   }
 ]

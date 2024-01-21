@@ -52,7 +52,7 @@ public class PoliManagementView {
         JButton kembaliButton = new JButton("Kembali");
         kembaliButton.addActionListener( e -> {
             frame.dispose();
-            new HomdeAdmin().setVisible(true);
+            new HomeAdmin().setVisible(true);
         });
 
         JPanel panelButton = new JPanel();

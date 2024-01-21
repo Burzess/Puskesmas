@@ -8,12 +8,12 @@ import java.awt.*;
 import static assets.Assets.fontButton;
 import static assets.Assets.fontHeader;
 
-public class HomdeAdmin extends Frame {
+public class HomeAdmin extends Frame {
     JButton bt1, bt2, bt3, bt4;
     JLabel header;
     JPanel backgroundPanel;
 
-    public HomdeAdmin() {
+    public HomeAdmin() {
         super("View Admin", 400,500);
     }
 
@@ -97,7 +97,7 @@ public class HomdeAdmin extends Frame {
 
         bt3.addActionListener(e -> {
             dispose();
-//            new CetakTransaksiView();
+            new CetakTransaksiView();
         });
 
         bt4.addActionListener(e -> {
@@ -106,6 +106,6 @@ public class HomdeAdmin extends Frame {
     }
 
 //    public static void main(String[] args) {
-//        new HomdeAdmin().setVisible(true);
+//        new HomeAdmin().setVisible(true);
 //    }
 }

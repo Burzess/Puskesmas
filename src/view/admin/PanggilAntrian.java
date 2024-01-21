@@ -3,7 +3,6 @@ package view.admin;
 import controller.PoliController;
 import controller.TransaksiController;
 import node.Antrian;
-import node.Pasien;
 import node.Poli;
 import view.Frame;
 import view.pasien.HomePasien;
@@ -92,7 +91,7 @@ public class PanggilAntrian extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new HomdeAdmin().setVisible(true);
+                new HomeAdmin().setVisible(true);
             }
         });
     }
