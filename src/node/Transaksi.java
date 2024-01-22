@@ -5,6 +5,17 @@ public class Transaksi {
     public Antrian antrean;
     public Pasien pasien;
     public Poli poli;
+    int total;
+    String descriptio;
+
+    public Transaksi(int idTransaksi, Antrian antrean, Pasien pasien, Poli poli, int total, String descriptio) {
+        this.idTransaksi = idTransaksi;
+        this.antrean = antrean;
+        this.pasien = pasien;
+        this.poli = poli;
+        this.total = total;
+        this.descriptio = descriptio;
+    }
 
     public Transaksi(int id, Antrian antrean, Pasien pasien, Poli poli) {
         this.idTransaksi = id;

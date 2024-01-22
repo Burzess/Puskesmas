@@ -1,9 +1,10 @@
-import view.admin.HomeAdmin;
+
+import view.admin.LoginAdmin;
 import view.pasien.HomePasien;
 
 public class App {
     public static void main(String[] args) {
-        new HomeAdmin().setVisible(true);
+        new LoginAdmin().setVisible(true);
         new HomePasien().setVisible(true);
     }
 }

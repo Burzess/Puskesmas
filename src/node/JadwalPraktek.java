@@ -14,6 +14,12 @@ public class JadwalPraktek {
         this.poli = poli;
     }
 
+    public JadwalPraktek(int id, String hari, String jamPraktek) {
+        this.id = id;
+        this.hari = hari;
+        this.jamPraktek = jamPraktek;
+    }
+
     public String getPoli() {
         return poli;
     }

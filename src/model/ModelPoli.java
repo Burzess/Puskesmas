@@ -36,6 +36,7 @@ public class ModelPoli {
         return null;
     }
 
+//############## ANTRIAN ##############
     public int getLastAntrian(String namaPoli){
         Poli poli = searchPoli(namaPoli);
         System.out.println(poli.namaPoli);
@@ -85,5 +86,6 @@ public class ModelPoli {
         modelGSON.writeToFile(listPoli);
     }
 
+    public void addDokter(){}
 
 }
