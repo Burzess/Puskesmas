@@ -25,16 +25,17 @@ public class JadwalPraktekView extends JFrame {
 
     private void initialize() {
         JadwalPraktekController jadwalPraktekController = new JadwalPraktekController();
-        String[] columnNames = {"Nama Dokter", "Hari", "Jam Praktek"};
+        String[] columnNames = {"Nama Dokter", "Hari", "Poli", "Jam Praktek"};
         List<JadwalPraktek> jadwalList = jadwalPraktekController.getAllJadwalPraktek();
 
         if (jadwalList != null && !jadwalList.isEmpty()) {
-            Object[][] data = new Object[jadwalList.size()][3];
+            Object[][] data = new Object[jadwalList.size()][4];
             for (int i = 0; i < jadwalList.size(); i++) {
                 JadwalPraktek jadwal = jadwalList.get(i);
                 data[i][0] = jadwal.getNamaDokter();
                 data[i][1] = jadwal.getHari();
-                data[i][2] = jadwal.getJamPraktek();
+                data[i][2] = jadwal.getPoli();
+                data[i][3] = jadwal.getJamPraktek();
             }
 
             jadwalTableModel = new DefaultTableModel(data, columnNames);

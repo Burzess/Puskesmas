@@ -171,9 +171,14 @@ public class FormDataPasienView extends Frame {
 
                 String nik = tfNIK.getText();
                 String noBPJS = tfNoBPJS.getText();
+
                 if (nik.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Harap lengkapi semua form (kecuali No BPJS) sebelum menyimpan.", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 } else {
+                    if (pasienController.getPasien(nik) != null) {
+                        JOptionPane.showMessageDialog(this, "NIK sudah terdaftar.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
                     String hasil = "Data Pasien:\n" +
                             "Nama: " + nama + "\n" +
                             "Alamat: " + alamat + "\n" +

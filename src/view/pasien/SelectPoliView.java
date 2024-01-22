@@ -51,10 +51,13 @@ public class SelectPoliView extends Frame {
                     String selectedPoli = button.getText();
                     if (poliController.addAtnrianPoli(selectedPoli, pasien)) {
                         Antrian antrian = poliController.getAntrian(selectedPoli, pasien.NIK);
-                        String detail = "Detail Antrian\n" +
-                                "Poli " + antrian.poli +
-                                "\nNama : " + antrian.pasien.namaPasien +
-                                "\nNo Antrian " + antrian.index;
+                        String detail = "<html><center>" +
+                                "<b>Detail Antrian</b><br>" +
+                                "no antrian " + antrian.index +
+                                "<br>di Poli " + selectedPoli +
+                                "<br>Terima Kasih :)" +
+                                "</center></html>";
+
                         JOptionPane.showMessageDialog(null, detail, "detail antrian", JOptionPane.INFORMATION_MESSAGE);
 
                         dispose();

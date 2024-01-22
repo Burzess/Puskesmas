@@ -105,7 +105,7 @@ public class HomeAdmin extends Frame {
             new PanggilAntrian().setVisible(true);});
     }
 
-//    public static void main(String[] args) {
-//        new HomeAdmin().setVisible(true);
-//    }
+    public static void main(String[] args) {
+        new HomeAdmin().setVisible(true);
+    }
 }

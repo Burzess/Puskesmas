@@ -22,5 +22,11 @@
     "namaPoli": "P2M",
     "dokters": [],
     "antrians": []
+  },
+  {
+    "idPoli": 4,
+    "namaPoli": "GON",
+    "dokters": [],
+    "antrians": []
   }
 ]

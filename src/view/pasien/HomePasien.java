@@ -3,6 +3,9 @@ package view.pasien;
 import view.Frame;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +22,7 @@ public class HomePasien extends Frame {
     public HomePasien() {
         super("Home Pasien", 300, 400);
         setLocation(40, 200);
+        createMenu();
         setLayout(new BorderLayout());
     }
 
@@ -59,6 +63,42 @@ public class HomePasien extends Frame {
         timer.start();
     }
 
+    private void createMenu() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu othersMenu = new JMenu("Others Menu");
+
+        JMenuItem lihatJadwal = new JMenuItem("Lihat Jadwal Praktek");
+        JMenuItem exitItem = new JMenuItem("Exit");
+
+        othersMenu.add(lihatJadwal);
+        othersMenu.add(exitItem);
+
+        lihatJadwal.addActionListener(e ->{
+            stopTextAnimation();
+            dispose();
+            new JadwalPraktekView().setVisible(true);
+        });
+
+        exitItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        CompoundBorder compoundBorder = new CompoundBorder(
+                new LineBorder(Color.BLACK),
+                new EmptyBorder(2, 2, 2, 2)
+        );
+
+        othersMenu.setBorder(compoundBorder);
+
+        menuBar.add(othersMenu);
+
+        setJMenuBar(menuBar);
+    }
+
     protected void component() {
         information.setText("Selamat Datang di Puskesmas Haha Hihi \uD83D\uDE02");
         information.setFont(new Font("JoyPixels ", Font.BOLD, 16));
@@ -86,14 +126,14 @@ public class HomePasien extends Frame {
         bt2.setBackground(colorButton);
         bt2.setForeground(Color.BLACK);
         add(bt2);
-
-        bt3 = new JButton("<html><center>Lihat Jadwal</center><center>Praktek Dokter</center></html>");
-        bt3.setFont(fontButton);
-        bt3.setBounds(80, 300, 130, 36);
-        bt3.setFocusPainted(false);
-        bt3.setBackground(colorButton);
-        bt3.setForeground(Color.BLACK);
-        add(bt3);
+//
+//        bt3 = new JButton("<html><center>Lihat Jadwal</center><center>Praktek Dokter</center></html>");
+//        bt3.setFont(fontButton);
+//        bt3.setBounds(80, 300, 130, 36);
+//        bt3.setFocusPainted(false);
+//        bt3.setBackground(colorButton);
+//        bt3.setForeground(Color.BLACK);
+//        add(bt3);
 
         backgroundPanel = new JPanel() {
             @Override
@@ -144,21 +184,20 @@ public class HomePasien extends Frame {
             }
         });
 
-        bt3.addActionListener( e -> {
-            System.out.println("lihat jadwal praktek");
-            stopTextAnimation();
-            dispose();
-            new JadwalPraktekView().setVisible(true);
-        });
+//        bt3.addActionListener( e -> {
+//            System.out.println("lihat jadwal praktek");
+//            stopTextAnimation();
+//            dispose();
+//            new JadwalPraktekView().setVisible(true);
+//        });
     }
 
     public static void setInformation(String information) {
         HomePasien.information.setText(information);
     }
 
-//
-//    public static void main(String[] args) {
-////        SwingUtilities.invokeLater(() -> new HomePasien().setVisible(true));
-//        new HomePasien().setVisible(true);
-//    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new HomePasien().setVisible(true));
+    }
 }
