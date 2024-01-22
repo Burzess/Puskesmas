@@ -12,5 +12,19 @@
     "hari": "Minggu",
     "jamPraktek": "19:00-12:30",
     "poli": "Umum"
+  },
+  {
+    "id": 0,
+    "namaDokter": "Dr. Tata",
+    "hari": "Selasa",
+    "jamPraktek": "09:00-12:00",
+    "poli": "Umum"
+  },
+  {
+    "id": 0,
+    "namaDokter": "Pandu",
+    "hari": "Senin",
+    "jamPraktek": "09:00-00:00",
+    "poli": "GON"
   }
 ]
