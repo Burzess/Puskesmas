@@ -3,31 +3,140 @@ package view.admin;
 import controller.JadwalPraktekController;
 import controller.PoliController;
 import node.JadwalPraktek;
-import node.Poli;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManageJadwalPraktekView extends JFrame {
+
+    private JTextField filterNamaDokterField;
+    private JComboBox<String> filterHariComboBox;
+    private JTextField filterJamPraktekField;
+
     private DefaultTableModel jadwalTableModel;
     private JTable jadwalTable;
-    private PoliController poliController;
-    private JadwalPraktekController jadwalPraktekController;
-    private String[] daftarHari = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"};
+    private final PoliController poliController;
+    private final JadwalPraktekController jadwalPraktekController;
+    private final String[] daftarHari = {"Pilih", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"};
 
     public ManageJadwalPraktekView() {
         poliController = new PoliController();
         jadwalPraktekController = new JadwalPraktekController();
         setTitle("Manage Jadwal Praktek Dokter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(700, 200);
         setLayout(new BorderLayout());
         initialize();
+        filter();
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
+    public void filter(){
+        filterNamaDokterField = new JTextField();
+        filterHariComboBox = new JComboBox<>(daftarHari);
+        filterJamPraktekField = new JTextField();
+        JButton filterButton = new JButton("Filter");
+
+        filterNamaDokterField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterTable();
+            }
+        });
+
+        filterHariComboBox.addActionListener(e -> filterTable());
+
+        filterJamPraktekField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterTable();
+            }
+        });
+
+        filterButton.addActionListener(e -> filterTable());
+
+        int textFieldWidth = 150;
+        int textFieldHeight = 25;
+
+        filterNamaDokterField.setPreferredSize(new Dimension(textFieldWidth, textFieldHeight));
+        filterHariComboBox.setPreferredSize(new Dimension(100, textFieldHeight));
+        filterJamPraktekField.setPreferredSize(new Dimension(textFieldWidth, textFieldHeight));
+
+        JPanel filterPanel = new JPanel();
+        filterPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        filterPanel.add(new JLabel("Nama Dokter:"));
+        filterPanel.add(filterNamaDokterField);
+
+        filterPanel.add(new JLabel("Hari:"));
+        filterPanel.add(filterHariComboBox);
+
+        filterPanel.add(new JLabel("Jam Praktek:"));
+        filterPanel.add(filterJamPraktekField);
+
+//        filterPanel.add(filterButton);
+
+        add(filterPanel, BorderLayout.NORTH);
+    }
+
+    private void filterTable() {
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(jadwalTableModel);
+        jadwalTable.setRowSorter(sorter);
+
+        List<RowFilter<Object, Object>> filters = new ArrayList<>();
+
+        String filterNamaDokter = filterNamaDokterField.getText();
+        if (!filterNamaDokter.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + filterNamaDokter, 0));
+        }
+
+        String filterHari = filterHariComboBox.getSelectedItem().toString();
+        if (!"Pilih".equals(filterHari)) {
+            filters.add(RowFilter.regexFilter("(?i)" + filterHari, 1));
+        }
+
+        String filterJamPraktek = filterJamPraktekField.getText();
+        if (!filterJamPraktek.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + filterJamPraktek, 3));
+        }
+
+        if (filters.size() > 1) {
+            RowFilter<Object, Object> compoundRowFilter = RowFilter.andFilter(filters);
+            sorter.setRowFilter(compoundRowFilter);
+        } else if (filters.size() == 1) {
+            sorter.setRowFilter(filters.getFirst());
+        } else {
+            sorter.setRowFilter(null);
+        }
+    }
+
 
     private void initialize() {
         String[] columnNames = {"Nama Dokter", "Hari", "Poli", "Jam Praktek"};

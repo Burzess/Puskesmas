@@ -15,15 +15,6 @@ public class JadwalPraktekModel {
         listJadwalPraktek = modelGSON.readFromFile(new TypeToken<ArrayList<JadwalPraktek>>() {}.getType());
         if (listJadwalPraktek == null) listJadwalPraktek = new ArrayList<>();
     }
-//
-//    public void init(){
-//        tambahJadwalPraktek("Dr. Tata","Senin", "09:00 - 12:00");
-//        tambahJadwalPraktek("Dr. Tita","Selasa", "09:00 - 12:00");
-//        tambahJadwalPraktek("Dr. Totot","Sabtu", "09:00 - 12:00");
-//        tambahJadwalPraktek("Dr. Tati","Minggu", "09:00 - 12:00");
-//        tambahJadwalPraktek("Dr. Tra","Rabu", "09:00 - 12:00");
-//    }
-
     public void tambahJadwalPraktek(String namaDokter, String hari, String jamPraktek, String poli) {
         JadwalPraktek jadwalPraktek = new JadwalPraktek(namaDokter, hari, jamPraktek, poli);
         listJadwalPraktek.add(jadwalPraktek);

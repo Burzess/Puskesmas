@@ -23,7 +23,6 @@ public class HomePasien extends Frame {
         super("Home Pasien", 300, 400);
         setLocation(40, 200);
         createMenu();
-        setLayout(new BorderLayout());
     }
 
     private void stopTextAnimation() {
@@ -69,8 +68,10 @@ public class HomePasien extends Frame {
         JMenu othersMenu = new JMenu("Others Menu");
 
         JMenuItem lihatJadwal = new JMenuItem("Lihat Jadwal Praktek");
+        JMenuItem transaksi = new JMenuItem("Transaksi");
         JMenuItem exitItem = new JMenuItem("Exit");
 
+        othersMenu.add(transaksi);
         othersMenu.add(lihatJadwal);
         othersMenu.add(exitItem);
 
@@ -78,6 +79,12 @@ public class HomePasien extends Frame {
             stopTextAnimation();
             dispose();
             new JadwalPraktekView().setVisible(true);
+        });
+
+        transaksi.addActionListener(e ->{
+            stopTextAnimation();
+            dispose();
+            new TransaksiView().setVisible(true);
         });
 
         exitItem.addActionListener(new ActionListener() {
