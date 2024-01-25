@@ -8,8 +8,6 @@ import view.Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class SelectPoliView extends Frame {
@@ -45,9 +43,7 @@ public class SelectPoliView extends Frame {
             button.setFocusPainted(false);
             button.setBackground(new Color(135, 206, 250));
             poliPanel.add(button);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+            button.addActionListener(e -> {
                     String selectedPoli = button.getText();
                     if (poliController.addAtnrianPoli(selectedPoli, pasien)) {
                         Antrian antrian = poliController.getAntrian(selectedPoli, pasien.NIK);
@@ -70,7 +66,6 @@ public class SelectPoliView extends Frame {
                                 "<br>dan menunggu giliran anda" + "<br>TERIMAKASIH :)</center></html>";
                         JOptionPane.showMessageDialog(null, message, "informasi", JOptionPane.INFORMATION_MESSAGE );
                     }
-                }
             });
         }
 
@@ -97,12 +92,9 @@ public class SelectPoliView extends Frame {
 
     @Override
     protected void event() {
-        btnKembali.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnKembali.addActionListener(e -> {
                 dispose();
                 new HomePasien().setVisible(true);
-            }
         });
     }
 }

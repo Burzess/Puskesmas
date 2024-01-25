@@ -6,13 +6,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PoliManagementView extends JFrame {
-    private PoliController poliController;
+    private final PoliController poliController;
     private DefaultTableModel tableModel;
-    private JList<String> poliList;
 
     public PoliManagementView() {
         poliController = new PoliController();
@@ -40,11 +37,7 @@ public class PoliManagementView extends JFrame {
         poliTable.setDefaultRenderer(Object.class, centerRenderer);
 
         JButton addButton = new JButton("Tambah Poli");
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tambahPoli();
-            }
-        });
+        addButton.addActionListener(e-> tambahPoli());
 
         JButton kembaliButton = new JButton("Kembali");
         kembaliButton.addActionListener(e -> {
@@ -78,6 +71,6 @@ public class PoliManagementView extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new PoliManagementView());
+        SwingUtilities.invokeLater(PoliManagementView::new);
     }
 }

@@ -6,19 +6,17 @@ import view.Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static assets.Assets.fontButton;
 
 public class DaftarAntrian extends Frame {
-    JLabel header, tanggalLayanan, tanggalLayananValue, poliLabel, poliValue, nikLabel;
+    JLabel header, nikLabel;
     JTextField nikField;
     JButton tombolDaftarAntrian, btnKembali;
     PasienController pasienController;
 
     public DaftarAntrian() {
-        super("Daftar Antrian", 600, 300);
+        super("Daftar Antrian", 600, 200);
         pasienController = new PasienController();
     }
 
@@ -31,22 +29,22 @@ public class DaftarAntrian extends Frame {
 
         nikLabel = new JLabel("NIK/No BPJS");
         nikLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-        nikLabel.setBounds(33, 140, 200, 30);
+        nikLabel.setBounds(33, 62, 200, 30);
         add(nikLabel);
 
         nikField = new JTextField();
-        nikField.setBounds(250, 145, 200, 24);
+        nikField.setBounds(250, 63, 200, 24);
         add(nikField);
 
         tombolDaftarAntrian = new JButton("Daftar Antrian");
-        tombolDaftarAntrian.setBounds(190, 190, 130, 24);
+        tombolDaftarAntrian.setBounds(170, 100, 130, 24);
         tombolDaftarAntrian.setFont(fontButton);
         tombolDaftarAntrian.setBackground(new Color(135, 206, 250));
         tombolDaftarAntrian.setFocusPainted(false);
         add(tombolDaftarAntrian);
 
         btnKembali = new JButton("Kembali");
-        btnKembali.setBounds(35, 190, 100, 24);
+        btnKembali.setBounds(35, 100, 100, 24);
         btnKembali.setFont(fontButton);
         btnKembali.setBackground(new Color(135, 206, 250));
         btnKembali.setFocusPainted(false);
@@ -55,17 +53,12 @@ public class DaftarAntrian extends Frame {
 
     @Override
     protected void event() {
-        btnKembali.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnKembali.addActionListener(e ->{
                 dispose();
                 new HomePasien().setVisible(true);
-            }
         });
 
-        tombolDaftarAntrian.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        tombolDaftarAntrian.addActionListener(e -> {
                 if (nikField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "NIK Tidak Boleh Kosong");
                 } else {
@@ -77,7 +70,6 @@ public class DaftarAntrian extends Frame {
                         new SelectPoliView(pasien1).setVisible(true);
                     }
                 }
-            }
         });
     }
 }

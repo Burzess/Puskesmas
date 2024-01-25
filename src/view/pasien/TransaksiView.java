@@ -7,8 +7,6 @@ import view.Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TransaksiView extends Frame {
     TransaksiController transaksiController;
@@ -41,19 +39,12 @@ public class TransaksiView extends Frame {
         panel.add(new JLabel());
         panel.add(submitBt);
 
-//        nikField.setBounds(20, 30, 200, 30);
-//        add(nikField);
         add(panel, BorderLayout.CENTER);
     }
 
     @Override
     protected void event() {
-        submitBt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                submitTransaksi();
-            }
-        });
+        submitBt.addActionListener(e -> submitTransaksi());
     }
 
     private void submitTransaksi() {
@@ -64,7 +55,7 @@ public class TransaksiView extends Frame {
 
         if (isValidInput(nik, nominal, deskripsi)) {
             Antrian antrian = poliController.getNextAntrian(poli);
-            transaksiController.addTransaksi(antrian, nominal, deskripsi);
+            transaksiController.addTransaksi(antrian);
             JOptionPane.showMessageDialog(this, "Transaksi berhasil!");
             clearFields();
         } else {

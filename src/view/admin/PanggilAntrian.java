@@ -9,8 +9,6 @@ import view.pasien.HomePasien;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PanggilAntrian extends Frame {
@@ -46,9 +44,7 @@ public class PanggilAntrian extends Frame {
             button.setFocusPainted(false);
             button.setBackground(new Color(135, 206, 250));
             poliPanel.add(button);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+            button.addActionListener(e -> {
                     String selectedPoli = button.getText();
                     Antrian nextAntrian = poliController.getNextAntrian(selectedPoli);
                     if (nextAntrian != null) {
@@ -59,7 +55,6 @@ public class PanggilAntrian extends Frame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Antrian poli " + selectedPoli + " sudah habis", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }
             });
 
         }
@@ -87,12 +82,9 @@ public class PanggilAntrian extends Frame {
 
     @Override
     protected void event() {
-        btnKembali.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnKembali.addActionListener(e -> {
                 dispose();
                 new HomeAdmin().setVisible(true);
-            }
         });
     }
 }

@@ -10,7 +10,6 @@ import javax.swing.*;
 
 
 public class LoginAdmin extends Frame {
-    private JLabel puskesmasLabel, kartuLabel, passwordLabel;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginBtn;
@@ -22,18 +21,18 @@ public class LoginAdmin extends Frame {
     @Override
     protected void component() {
         System.out.println("Menu LOGIN ADMIN");
-        puskesmasLabel = new JLabel("Puskesmas Haha Hihi");
+        JLabel puskesmasLabel = new JLabel("Puskesmas Haha Hihi");
         puskesmasLabel.setFont(new Font("Arial", Font.BOLD, 24));
         setBound(puskesmasLabel, 65, 200, 300, 45);
 
-        kartuLabel = new JLabel("Login Admin");
+        JLabel kartuLabel = new JLabel("Login Admin");
         kartuLabel.setFont(new Font("Arial", Font.BOLD, 13));
         setBound(kartuLabel, 65, 250, 100, 18);
 
         usernameField = new JTextField();
         setBound(usernameField, 65, 270, 270, 30);
 
-        passwordLabel = new JLabel("Password");
+        JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setFont(new Font("Arial", Font.BOLD, 13));
         setBound(passwordLabel, 65, 315, 100, 18);
 
@@ -67,7 +66,6 @@ public class LoginAdmin extends Frame {
                 JOptionPane.showMessageDialog(null, "Masukkan Inputan Yang benar", "Login Sukses",
                         JOptionPane.ERROR_MESSAGE);
             }
-
         });
     }
 
