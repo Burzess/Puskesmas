@@ -29,12 +29,6 @@ public class TransaksiController {
         modelTransaksi.addTrasnsaksi(new Transaksi(id, antrian, pasien, poli));
     }
 
-    public void addTransaksi(Antrian antrian, int total, String deskripsi){
-        Poli poli = modelPoli.getPoli(antrian.poli);
-        Pasien pasien = modelPasien.search(antrian.pasien.NIK);
-        int id = modelTransaksi.getLastId();
-        modelTransaksi.addTrasnsaksi(new Transaksi(id, antrian, pasien, poli, total, deskripsi));
-    }
     public List<Transaksi> getAllTransaki(){
         return modelTransaksi.getListTransaksi();
     }

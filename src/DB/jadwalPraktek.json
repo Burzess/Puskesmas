@@ -26,5 +26,12 @@
     "hari": "Senin",
     "jamPraktek": "09:00-00:00",
     "poli": "GON"
+  },
+  {
+    "id": 0,
+    "namaDokter": "Pandu",
+    "hari": "Senin",
+    "jamPraktek": "00:00-00:00",
+    "poli": "Umum"
   }
 ]
