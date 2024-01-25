@@ -15,7 +15,7 @@ import static assets.Assets.*;
 public class HomePasien extends Frame {
     JLabel header;
     static JLabel information = new JLabel("");
-    JButton bt1, bt2, bt3;
+    JButton bt1, bt2;
     JPanel backgroundPanel;
     Timer timer;
 
@@ -35,11 +35,11 @@ public class HomePasien extends Frame {
         timer = new Timer(1, new ActionListener() {
             private int xPosition = getWidth();
             private int rounds = 0;
-            private final int maxRounds = 2;
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveText();
+                int maxRounds = 2;
                 if (rounds >= maxRounds * 2) {
                     xPosition = getWidth();
                     rounds = 0;
@@ -78,12 +78,7 @@ public class HomePasien extends Frame {
             new JadwalPraktekView().setVisible(true);
         });
 
-        exitItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        exitItem.addActionListener(e -> System.exit(0));
 
         CompoundBorder compoundBorder = new CompoundBorder(
                 new LineBorder(Color.BLACK),
@@ -155,32 +150,19 @@ public class HomePasien extends Frame {
     }
 
     public void event(){
-        bt1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        bt1.addActionListener(e -> {
                 System.out.println("Pasien baru");
                 stopTextAnimation();
                 dispose();
                 new FormDataPasienView().setVisible(true);
-            }
         });
 
-        bt2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        bt2.addActionListener(e -> {
                 System.out.println("Ambil antrian");
                 stopTextAnimation();
                 dispose();
                 new DaftarAntrian().setVisible(true);
-            }
         });
-
-//        bt3.addActionListener( e -> {
-//            System.out.println("lihat jadwal praktek");
-//            stopTextAnimation();
-//            dispose();
-//            new JadwalPraktekView().setVisible(true);
-//        });
     }
 
     public static void setInformation(String information) {

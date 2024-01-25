@@ -5,13 +5,9 @@ import node.JadwalPraktek;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class JadwalPraktekView extends JFrame {
-    private DefaultTableModel jadwalTableModel;
-    private JTable jadwalTable;
 
     public JadwalPraktekView() {
         setTitle("Jadwal Praktek Dokter");
@@ -38,8 +34,8 @@ public class JadwalPraktekView extends JFrame {
                 data[i][3] = jadwal.getJamPraktek();
             }
 
-            jadwalTableModel = new DefaultTableModel(data, columnNames);
-            jadwalTable = new JTable(jadwalTableModel);
+            DefaultTableModel jadwalTableModel = new DefaultTableModel(data, columnNames);
+            JTable jadwalTable = new JTable(jadwalTableModel);
             JScrollPane scrollPane = new JScrollPane(jadwalTable);
             add(scrollPane, BorderLayout.CENTER);
         } else {
@@ -49,11 +45,9 @@ public class JadwalPraktekView extends JFrame {
         }
 
         JButton kembali = new JButton("Kembali");
-        kembali.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        kembali.addActionListener(e ->{
                 dispose();
                 new HomePasien().setVisible(true);
-            }
         });
 
         JPanel buttonPanel = new JPanel();

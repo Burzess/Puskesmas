@@ -101,8 +101,6 @@ public class ManageJadwalPraktekView extends JFrame {
         filterPanel.add(new JLabel("Jam Praktek:"));
         filterPanel.add(filterJamPraktekField);
 
-//        filterPanel.add(filterButton);
-
         add(filterPanel, BorderLayout.NORTH);
     }
 
@@ -117,7 +115,7 @@ public class ManageJadwalPraktekView extends JFrame {
             filters.add(RowFilter.regexFilter("(?i)" + filterNamaDokter, 0));
         }
 
-        String filterHari = filterHariComboBox.getSelectedItem().toString();
+        String filterHari = (String) filterHariComboBox.getSelectedItem();
         if (!"Pilih".equals(filterHari)) {
             filters.add(RowFilter.regexFilter("(?i)" + filterHari, 1));
         }
@@ -208,9 +206,9 @@ public class ManageJadwalPraktekView extends JFrame {
         int result = JOptionPane.showConfirmDialog(null, panel, "Tambah Jadwal", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             String namaDokter = namaDokterField.getText();
-            String hari = hariComboBox.getSelectedItem().toString();
+            String hari = (String) hariComboBox.getSelectedItem();
             String jamPraktek = jamPraktekField.getText();
-            String poli = poliComboBox.getSelectedItem().toString();
+            String poli = (String) poliComboBox.getSelectedItem();
 
             if (isDataValid(namaDokter, hari, jamPraktek)) {
                 jadwalPraktekController.tambahJadwalPraktek(namaDokter, hari, jamPraktek, poli);
@@ -218,7 +216,7 @@ public class ManageJadwalPraktekView extends JFrame {
                 jadwalTableModel.addRow(rowData);
                 jadwalTableModel.fireTableDataChanged();
             } else {
-                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data tidak boleh ada yang kosong", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -247,19 +245,23 @@ public class ManageJadwalPraktekView extends JFrame {
 
             int result = JOptionPane.showConfirmDialog(null, panel, "Update Jadwal", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
-                String namaDokter = namaDokterField.getText();
-                String hari = hariComboBox.getSelectedItem().toString();
-                String jamPraktek = jamPraktekField.getText();
-                String poli = poliComboBox.getSelectedItem().toString();
+                try {
+                    String namaDokter = namaDokterField.getText();
+                    String hari = (String) hariComboBox.getSelectedItem();
+                    String jamPraktek = jamPraktekField.getText();
+                    String poli = (String) poliComboBox.getSelectedItem();
 
-                if (isDataValid(namaDokter, hari, jamPraktek)) {
-                    jadwalPraktekController.updateJadwalPraktek(selectedRow, namaDokter, hari, jamPraktek, poli);
-                    jadwalTableModel.setValueAt(namaDokter, selectedRow, 0);
-                    jadwalTableModel.setValueAt(hari, selectedRow, 1);
-                    jadwalTableModel.setValueAt(poli, selectedRow, 2);
-                    jadwalTableModel.setValueAt(jamPraktek, selectedRow, 3);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (isDataValid(namaDokter, hari, jamPraktek)) {
+                        jadwalPraktekController.updateJadwalPraktek(selectedRow, namaDokter, hari, jamPraktek, poli);
+                        jadwalTableModel.setValueAt(namaDokter, selectedRow, 0);
+                        jadwalTableModel.setValueAt(hari, selectedRow, 1);
+                        jadwalTableModel.setValueAt(poli, selectedRow, 2);
+                        jadwalTableModel.setValueAt(jamPraktek, selectedRow, 3);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (HeadlessException e) {
+                    e.getMessage();
                 }
             }
         } else {
@@ -268,10 +270,6 @@ public class ManageJadwalPraktekView extends JFrame {
     }
 
     private boolean isDataValid(String namaDokter, String hari, String jamPraktek) {
-        return !namaDokter.isEmpty() && !hari.isEmpty() && !jamPraktek.isEmpty();
+        return !namaDokter.isEmpty() && !hari.equals("Pilih") && !jamPraktek.isEmpty();
     }
-//
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> new ManageJadwalPraktekView());
-//    }
 }
