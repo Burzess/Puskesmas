@@ -2,31 +2,21 @@
   {
     "idPoli": 0,
     "namaPoli": "Umum",
-    "dokters": [],
     "antrians": []
   },
   {
     "idPoli": 1,
     "namaPoli": "Gigi",
-    "dokters": [],
     "antrians": []
   },
   {
     "idPoli": 2,
     "namaPoli": "Gizi",
-    "dokters": [],
     "antrians": []
   },
   {
     "idPoli": 3,
     "namaPoli": "P2M",
-    "dokters": [],
-    "antrians": []
-  },
-  {
-    "idPoli": 4,
-    "namaPoli": "GON",
-    "dokters": [],
     "antrians": []
   }
 ]

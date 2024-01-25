@@ -35,7 +35,7 @@ public class HomePasien extends Frame {
         timer = new Timer(1, new ActionListener() {
             private int xPosition = getWidth();
             private int rounds = 0;
-            private int maxRounds = 2;
+            private final int maxRounds = 2;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,6 @@ public class HomePasien extends Frame {
 
                 if (xPosition + information.getWidth() < 0) {
                     xPosition = getWidth();
-                    System.out.println("Rounds:" + rounds);
                     rounds++;
                 }
             }
@@ -68,10 +67,8 @@ public class HomePasien extends Frame {
         JMenu othersMenu = new JMenu("Others Menu");
 
         JMenuItem lihatJadwal = new JMenuItem("Lihat Jadwal Praktek");
-        JMenuItem transaksi = new JMenuItem("Transaksi");
         JMenuItem exitItem = new JMenuItem("Exit");
 
-        othersMenu.add(transaksi);
         othersMenu.add(lihatJadwal);
         othersMenu.add(exitItem);
 
@@ -79,12 +76,6 @@ public class HomePasien extends Frame {
             stopTextAnimation();
             dispose();
             new JadwalPraktekView().setVisible(true);
-        });
-
-        transaksi.addActionListener(e ->{
-            stopTextAnimation();
-            dispose();
-            new TransaksiView().setVisible(true);
         });
 
         exitItem.addActionListener(new ActionListener() {
@@ -103,6 +94,7 @@ public class HomePasien extends Frame {
 
         menuBar.add(othersMenu);
 
+        menuBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
         setJMenuBar(menuBar);
     }
 
@@ -133,14 +125,6 @@ public class HomePasien extends Frame {
         bt2.setBackground(colorButton);
         bt2.setForeground(Color.BLACK);
         add(bt2);
-//
-//        bt3 = new JButton("<html><center>Lihat Jadwal</center><center>Praktek Dokter</center></html>");
-//        bt3.setFont(fontButton);
-//        bt3.setBounds(80, 300, 130, 36);
-//        bt3.setFocusPainted(false);
-//        bt3.setBackground(colorButton);
-//        bt3.setForeground(Color.BLACK);
-//        add(bt3);
 
         backgroundPanel = new JPanel() {
             @Override

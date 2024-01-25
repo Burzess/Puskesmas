@@ -3,33 +3,41 @@ import controller.PoliController;
 import node.Poli;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PoliManagementView extends JFrame {
     private PoliController poliController;
-    private DefaultListModel<String> poliListModel;
+    private DefaultTableModel tableModel;
     private JList<String> poliList;
 
     public PoliManagementView() {
         poliController = new PoliController();
         setTitle("Poli Management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(280, 300);
         component();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void component() {
-        poliListModel = new DefaultListModel<>();
+        tableModel =new DefaultTableModel();
+        tableModel.addColumn("List Poli");
+
         for (Poli poli : poliController.getAll()) {
-            poliListModel.addElement(poli.namaPoli);
+            tableModel.addRow(new Object[]{poli.namaPoli});
         }
 
-        poliList = new JList<>(poliListModel);
-        poliList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        JTable poliTable = new JTable(tableModel);
+        poliTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        poliTable.setDefaultRenderer(Object.class, centerRenderer);
 
         JButton addButton = new JButton("Tambah Poli");
         addButton.addActionListener(new ActionListener() {
@@ -48,9 +56,9 @@ public class PoliManagementView extends JFrame {
         panelButton.add(kembaliButton);
         panelButton.add(addButton);
 
-        JScrollPane scrollPane = new JScrollPane(poliList);
+        JScrollPane scrollPane = new JScrollPane(poliTable);
 
-        JPanel centerPanel = new JPanel(new GridBagLayout());
+        JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.add(scrollPane);
 
         setLayout(new BorderLayout());
@@ -63,7 +71,7 @@ public class PoliManagementView extends JFrame {
         if (newPoli != null && !newPoli.trim().isEmpty()) {
             poliController.tambahPoli(newPoli);
             JOptionPane.showMessageDialog(null, newPoli + " has been added.");
-            poliListModel.addElement(newPoli);
+            tableModel.addRow(new Object[]{newPoli});
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a valid poli name.");
         }

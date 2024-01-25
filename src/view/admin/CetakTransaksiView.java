@@ -1,5 +1,9 @@
 package view.admin;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Header;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import controller.TransaksiController;
 import node.Transaksi;
 
@@ -9,6 +13,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
@@ -28,7 +33,6 @@ public class CetakTransaksiView extends JFrame {
 
         String[] columnNames = {"ID Transaksi", "Nomor Antrian", "Nama Pasien", "NIK Pasien", "Nama Poli"};
 
-        // Mendapatkan data transaksi dari controller
         TransaksiController transaksiController = new TransaksiController();
         List<Transaksi> transaksiList = transaksiController.getAllTransaki();
 
@@ -47,7 +51,6 @@ public class CetakTransaksiView extends JFrame {
             transaksiTableModel = new DefaultTableModel(data, columnNames);
             transaksiTable = new JTable(transaksiTableModel);
         } else {
-            // Handling jika transaksiList null atau kosong
             transaksiTableModel = new DefaultTableModel(columnNames, 0);
             transaksiTable = new JTable(transaksiTableModel);
             JOptionPane.showMessageDialog(null, "Tidak ada transaksi yang tersedia.");
@@ -95,14 +98,24 @@ public class CetakTransaksiView extends JFrame {
                     Transaksi transaksi = transaksiController.getTransaksiById(idTransaksi);
 
                     if (transaksi != null) {
+                        String filename = transaksi.poli.namaPoli + transaksiTableModel.getValueAt(selectedRow, 0);
+                        String filePath = "src/file_transaksi/" + filename + ".pdf";
+
+                        Document document = new Document();
+                        PdfWriter.getInstance(document, new FileOutputStream(filePath));
+                        document.open();
+
                         String message = "Detail Transaksi\n" +
-                                "ID Transaksi: " + transaksi.idTransaksi + "\n" +
-                                "Nomor Antrian: " + transaksi.antrean.index + "\n" +
-                                "Nama Pasien: " + transaksi.pasien.namaPasien + "\n" +
-                                "NIK Pasien: " + transaksi.pasien.NIK + "\n" +
-                                "Poli: " + transaksi.poli.namaPoli + "\n";
-                            JOptionPane.showMessageDialog(null, message, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE);
-                        transaksi.viewTransaction();
+                                "ID Transaksi : " + transaksi.idTransaksi + "\n" +
+                                "Nomor Antrian : " + transaksi.antrean.index + "\n" +
+                                "Nama Pasien : " + transaksi.pasien.namaPasien + "\n" +
+                                "NIK Pasien : " + transaksi.pasien.NIK + "\n" +
+                                "Poli : " + transaksi.poli.namaPoli + "\n";
+                        document.add(new Paragraph(message));
+
+                        document.close();
+                        JOptionPane.showMessageDialog(null, "File " + filename + ".pdf telah berhasil dibuat di folder src/file_transaksi.");
+//                            JOptionPane.showMessageDialog(null, message, "Detail Transaksi", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Transaksi tidak ditemukan.");
                     }
