@@ -1,8 +1,8 @@
 package view.admin;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import controller.TransaksiController;
 import node.Transaksi;
@@ -100,13 +100,22 @@ public class CetakTransaksiView extends JFrame {
                     PdfWriter.getInstance(document, new FileOutputStream(filePath));
                     document.open();
 
-                    String message = "Detail Transaksi\n" +
-                            "ID Transaksi : " + transaksi.idTransaksi + "\n" +
+                    Paragraph header = new Paragraph("Transaksi Poli " + transaksi.poli.namaPoli, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18));
+                    header.setAlignment(Element.ALIGN_CENTER);
+                    document.add(header);
+
+                    Paragraph detail = new Paragraph("\nDetail Transaksi", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12));
+                    detail.setAlignment(Element.ALIGN_CENTER);
+                    document.add(detail);
+
+                    String message = "ID Transaksi : " + transaksi.idTransaksi + "\n" +
                             "Nomor Antrian : " + transaksi.antrean.index + "\n" +
                             "Nama Pasien : " + transaksi.pasien.namaPasien + "\n" +
                             "NIK Pasien : " + transaksi.pasien.NIK + "\n" +
                             "Poli : " + transaksi.poli.namaPoli + "\n";
-                    document.add(new Paragraph(message));
+                    Paragraph paragraph = new Paragraph(message);
+                    paragraph.setAlignment(Element.ALIGN_CENTER);
+                    document.add(paragraph);
 
                     document.close();
                     JOptionPane.showMessageDialog(null, "File " + filename + ".pdf telah berhasil dibuat di folder src/file_transaksi.");
