@@ -7,6 +7,7 @@ import view.Frame;
 import javax.swing.*;
 import java.awt.*;
 
+import static assets.Assets.colorButton;
 import static assets.Assets.fontButton;
 
 public class DaftarAntrian extends Frame {
@@ -39,14 +40,14 @@ public class DaftarAntrian extends Frame {
         tombolDaftarAntrian = new JButton("Daftar Antrian");
         tombolDaftarAntrian.setBounds(170, 100, 130, 24);
         tombolDaftarAntrian.setFont(fontButton);
-        tombolDaftarAntrian.setBackground(new Color(135, 206, 250));
+        tombolDaftarAntrian.setBackground(colorButton);
         tombolDaftarAntrian.setFocusPainted(false);
         add(tombolDaftarAntrian);
 
         btnKembali = new JButton("Kembali");
         btnKembali.setBounds(35, 100, 100, 24);
         btnKembali.setFont(fontButton);
-        btnKembali.setBackground(new Color(135, 206, 250));
+        btnKembali.setBackground(colorButton);
         btnKembali.setFocusPainted(false);
         add(btnKembali);
     }

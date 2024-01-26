@@ -13,11 +13,15 @@ public class JadwalPraktekController {
 
     public void tambahJadwalPraktek(String nameDokter, String hari, String jamPraktek, String poli) {
         int id = JadwalPraktekModel.getLastId();
-        jadwalPraktekModel.tambahJadwalPraktek(nameDokter, hari, jamPraktek, poli);
+        jadwalPraktekModel.tambahJadwalPraktek(id, nameDokter, hari, jamPraktek, poli);
     }
 
     public void updateJadwalPraktek(int id, String namaDokter, String hari, String jamPraktek, String poli) {
         jadwalPraktekModel.updateJadwalPraktek(id, namaDokter, hari, jamPraktek, poli);
+    }
+
+    public JadwalPraktek getJadwalPraktek(String namaDokter){
+        return jadwalPraktekModel.getJadwalPraktek(namaDokter);
     }
 
     public List<JadwalPraktek> getAllJadwalPraktek() {

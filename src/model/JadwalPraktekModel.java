@@ -15,8 +15,8 @@ public class JadwalPraktekModel {
         listJadwalPraktek = modelGSON.readFromFile(new TypeToken<ArrayList<JadwalPraktek>>() {}.getType());
         if (listJadwalPraktek == null) listJadwalPraktek = new ArrayList<>();
     }
-    public void tambahJadwalPraktek(String namaDokter, String hari, String jamPraktek, String poli) {
-        JadwalPraktek jadwalPraktek = new JadwalPraktek(namaDokter, hari, jamPraktek, poli);
+    public void tambahJadwalPraktek(int id, String namaDokter, String hari, String jamPraktek, String poli) {
+        JadwalPraktek jadwalPraktek = new JadwalPraktek(id, namaDokter, hari, jamPraktek, poli);
         listJadwalPraktek.add(jadwalPraktek);
         modelGSON.writeToFile(listJadwalPraktek);
     }
@@ -34,6 +34,15 @@ public class JadwalPraktekModel {
             jadwalPraktek.setPoli(poli);
         }
         modelGSON.writeToFile(listJadwalPraktek);
+    }
+
+    public JadwalPraktek getJadwalPraktek(String namaDokter){
+        for (JadwalPraktek jadwalPraktek : listJadwalPraktek) {
+            if (jadwalPraktek.getNamaDokter().equals(namaDokter)) {
+                return jadwalPraktek;
+            }
+        }
+        return null;
     }
 
     public static int getLastId() {

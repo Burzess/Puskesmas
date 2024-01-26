@@ -7,17 +7,12 @@ public class JadwalPraktek {
     private String jamPraktek;
     private String poli;
 
-    public JadwalPraktek(String namaDokter, String hari, String jamPraktek, String poli) {
+    public JadwalPraktek(int id, String namaDokter, String hari, String jamPraktek, String poli) {
+        this.id = id;
         this.namaDokter = namaDokter;
         this.hari = hari;
         this.jamPraktek = jamPraktek;
         this.poli = poli;
-    }
-
-    public JadwalPraktek(int id, String hari, String jamPraktek) {
-        this.id = id;
-        this.hari = hari;
-        this.jamPraktek = jamPraktek;
     }
 
     public String getPoli() {
