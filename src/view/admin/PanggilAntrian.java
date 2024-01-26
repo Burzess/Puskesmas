@@ -77,7 +77,6 @@ public class PanggilAntrian extends Frame {
 
         btnKembali = new JButton("Kembali");
         btnKembali.setFocusPainted(false);
-        btnKembali.setBackground(colorButton);
         btnKembali.setMargin(new Insets(10, 30, 30, 30));
 
         add(btnKembali, BorderLayout.SOUTH);

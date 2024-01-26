@@ -13,6 +13,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static assets.Assets.colorButton;
+
 public class ManageJadwalPraktekView extends JFrame {
 
     private JTextField filterNamaDokterField;
@@ -166,13 +168,16 @@ public class ManageJadwalPraktekView extends JFrame {
 
         JButton addButton = new JButton("Tambah Jadwal");
         addButton.setFocusPainted(false);
+        addButton.setBackground(colorButton);
         addButton.addActionListener(e -> tambahJadwal());
 
         JButton updateButton = new JButton("Update Jadwal");
         updateButton.setFocusPainted(false);
+        updateButton.setBackground(colorButton);
         updateButton.addActionListener(e -> updateJadwal());
 
         JButton kembaliButton = new JButton("Kembali");
+        kembaliButton.setBackground(colorButton);
         kembaliButton.addActionListener(e -> {
             dispose();
             new HomeAdmin().setVisible(true);
