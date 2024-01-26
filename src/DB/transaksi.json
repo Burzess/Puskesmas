@@ -130,5 +130,93 @@
         }
       ]
     }
+  },
+  {
+    "idTransaksi": 3,
+    "antrean": {
+      "index": 1,
+      "pasien": {
+        "idPasien": 2,
+        "namaPasien": "Jul",
+        "alamat": "Jabar",
+        "gender": "Laki-laki",
+        "TTL": "23-02-2003",
+        "NIK": "234",
+        "BPJS": "098"
+      },
+      "poli": "P2M"
+    },
+    "pasien": {
+      "idPasien": 2,
+      "namaPasien": "Jul",
+      "alamat": "Jabar",
+      "gender": "Laki-laki",
+      "TTL": "23-02-2003",
+      "NIK": "234",
+      "BPJS": "098"
+    },
+    "poli": {
+      "idPoli": 3,
+      "namaPoli": "P2M",
+      "antrians": [
+        {
+          "index": 1,
+          "pasien": {
+            "idPasien": 2,
+            "namaPasien": "Jul",
+            "alamat": "Jabar",
+            "gender": "Laki-laki",
+            "TTL": "23-02-2003",
+            "NIK": "234",
+            "BPJS": "098"
+          },
+          "poli": "P2M"
+        }
+      ]
+    }
+  },
+  {
+    "idTransaksi": 4,
+    "antrean": {
+      "index": 1,
+      "pasien": {
+        "idPasien": 1,
+        "namaPasien": "Halim",
+        "alamat": "SBY",
+        "gender": "Laki-laki",
+        "TTL": "16-01-2024",
+        "NIK": "123",
+        "BPJS": ""
+      },
+      "poli": "Gigi"
+    },
+    "pasien": {
+      "idPasien": 1,
+      "namaPasien": "Halim",
+      "alamat": "SBY",
+      "gender": "Laki-laki",
+      "TTL": "16-01-2024",
+      "NIK": "123",
+      "BPJS": ""
+    },
+    "poli": {
+      "idPoli": 1,
+      "namaPoli": "Gigi",
+      "antrians": [
+        {
+          "index": 1,
+          "pasien": {
+            "idPasien": 1,
+            "namaPasien": "Halim",
+            "alamat": "SBY",
+            "gender": "Laki-laki",
+            "TTL": "16-01-2024",
+            "NIK": "123",
+            "BPJS": ""
+          },
+          "poli": "Gigi"
+        }
+      ]
+    }
   }
 ]
