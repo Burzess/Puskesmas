@@ -39,9 +39,8 @@ public class HomePasien extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveText();
-                int maxRounds = 2;
-                if (rounds >= maxRounds * 2) {
-                    xPosition = getWidth();
+                int maxRounds = 3;
+                if (rounds >= maxRounds) {
                     rounds = 0;
                     setInformation("Selamat Datang di Puskesmas Haha Hihi \uD83D\uDE02");
                 }
