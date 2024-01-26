@@ -8,6 +8,8 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import static assets.Assets.colorButton;
+
 
 public class LoginAdmin extends Frame {
     private JTextField usernameField;
@@ -41,7 +43,7 @@ public class LoginAdmin extends Frame {
 
         loginBtn = new JButton("Login");
         loginBtn.setForeground(Color.white);
-        loginBtn.setBackground(Color.DARK_GRAY);
+        loginBtn.setBackground(colorButton);
         loginBtn.setFocusPainted(false);
         setBound(loginBtn, 157, 380, 85, 30);
     }
@@ -59,7 +61,7 @@ public class LoginAdmin extends Frame {
                     dispose();
                     new HomeAdmin().setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Data Tidak Valid", "Gagal Login",
+                    JOptionPane.showMessageDialog(null, "username atau password salah", "Gagal Login",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {

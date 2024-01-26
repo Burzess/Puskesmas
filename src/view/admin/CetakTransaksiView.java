@@ -1,8 +1,6 @@
 package view.admin;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import controller.TransaksiController;
 import node.Transaksi;
@@ -15,6 +13,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
+
+import static assets.Assets.colorButton;
 
 public class CetakTransaksiView extends JFrame {
     private DefaultTableModel transaksiTableModel;
@@ -81,6 +81,7 @@ public class CetakTransaksiView extends JFrame {
         searchPanel.add(searchButton);
 
         JButton printButton = new JButton("Cetak Transaksi");
+        printButton.setBackground(colorButton);
         printButton.addActionListener(e -> {
             try {
                 int selectedRow = transaksiTable.getSelectedRow();
@@ -129,6 +130,7 @@ public class CetakTransaksiView extends JFrame {
         });
 
         JButton kembaliButton = new JButton("Kembali");
+        kembaliButton.setBackground(colorButton);
         kembaliButton.addActionListener(e -> {
             dispose();
             new HomeAdmin().setVisible(true);

@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static assets.Assets.colorButton;
+
 public class PanggilAntrian extends Frame {
     JLabel titleLabel;
     JButton btnKembali;
@@ -42,7 +44,7 @@ public class PanggilAntrian extends Frame {
         for (JButton button : poliButtons) {
             button.setMargin(new Insets(10, 10, 10, 10));
             button.setFocusPainted(false);
-            button.setBackground(new Color(135, 206, 250));
+            button.setBackground(colorButton);
             poliPanel.add(button);
             button.addActionListener(e -> {
                     String selectedPoli = button.getText();

@@ -13,6 +13,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static assets.Assets.colorButton;
+
 public class ManageJadwalPraktekView extends JFrame {
 
     private JTextField filterNamaDokterField;
@@ -166,13 +168,16 @@ public class ManageJadwalPraktekView extends JFrame {
 
         JButton addButton = new JButton("Tambah Jadwal");
         addButton.setFocusPainted(false);
+        addButton.setBackground(colorButton);
         addButton.addActionListener(e -> tambahJadwal());
 
         JButton updateButton = new JButton("Update Jadwal");
         updateButton.setFocusPainted(false);
+        updateButton.setBackground(colorButton);
         updateButton.addActionListener(e -> updateJadwal());
 
         JButton kembaliButton = new JButton("Kembali");
+        kembaliButton.setBackground(colorButton);
         kembaliButton.addActionListener(e -> {
             dispose();
             new HomeAdmin().setVisible(true);
@@ -216,7 +221,7 @@ public class ManageJadwalPraktekView extends JFrame {
                 jadwalTableModel.addRow(rowData);
                 jadwalTableModel.fireTableDataChanged();
             } else {
-                JOptionPane.showMessageDialog(null, "Data tidak boleh ada yang kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Silahkan lengkapi semua data", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -258,7 +263,7 @@ public class ManageJadwalPraktekView extends JFrame {
                         jadwalTableModel.setValueAt(poli, selectedRow, 2);
                         jadwalTableModel.setValueAt(jamPraktek, selectedRow, 3);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Data tidak boleh ada yang kosong", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException e) {
                     e.getMessage();
