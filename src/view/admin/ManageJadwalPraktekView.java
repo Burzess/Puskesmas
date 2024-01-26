@@ -216,7 +216,7 @@ public class ManageJadwalPraktekView extends JFrame {
                 jadwalTableModel.addRow(rowData);
                 jadwalTableModel.fireTableDataChanged();
             } else {
-                JOptionPane.showMessageDialog(null, "Data tidak boleh ada yang kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Silahkan lengkapi semua data", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -258,7 +258,7 @@ public class ManageJadwalPraktekView extends JFrame {
                         jadwalTableModel.setValueAt(poli, selectedRow, 2);
                         jadwalTableModel.setValueAt(jamPraktek, selectedRow, 3);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Data tidak boleh ada yang kosong", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException e) {
                     e.getMessage();
