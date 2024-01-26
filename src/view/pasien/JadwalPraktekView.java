@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
+import static assets.Assets.colorButton;
+
 public class JadwalPraktekView extends JFrame {
 
     public JadwalPraktekView() {
@@ -45,6 +47,7 @@ public class JadwalPraktekView extends JFrame {
         }
 
         JButton kembali = new JButton("Kembali");
+        kembali.setBackground(colorButton);
         kembali.addActionListener(e ->{
                 dispose();
                 new HomePasien().setVisible(true);

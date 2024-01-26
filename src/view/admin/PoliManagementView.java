@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+import static assets.Assets.colorButton;
+
 public class PoliManagementView extends JFrame {
     private final PoliController poliController;
     private DefaultTableModel tableModel;
@@ -37,9 +39,11 @@ public class PoliManagementView extends JFrame {
         poliTable.setDefaultRenderer(Object.class, centerRenderer);
 
         JButton addButton = new JButton("Tambah Poli");
+        addButton.setBackground(colorButton);
         addButton.addActionListener(e-> tambahPoli());
 
         JButton kembaliButton = new JButton("Kembali");
+        kembaliButton.setBackground(colorButton);
         kembaliButton.addActionListener(e -> {
             dispose();
             new HomeAdmin().setVisible(true);
@@ -60,13 +64,13 @@ public class PoliManagementView extends JFrame {
     }
 
     private void tambahPoli() {
-        String newPoli = JOptionPane.showInputDialog(this, "Enter new poli:");
+        String newPoli = JOptionPane.showInputDialog(this, "Masukan Poli Baru:");
         if (newPoli != null && !newPoli.trim().isEmpty()) {
-            poliController.tambahPoli(newPoli);
-            JOptionPane.showMessageDialog(null, newPoli + " has been added.");
+            poliController.tambahPoli(newPoli.toUpperCase());
+            JOptionPane.showMessageDialog(null, newPoli.toUpperCase() + " telah ditambahkan.");
             tableModel.addRow(new Object[]{newPoli});
         } else {
-            JOptionPane.showMessageDialog(this, "Please enter a valid poli name.");
+            JOptionPane.showMessageDialog(this, "nama polinya di isilah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
 

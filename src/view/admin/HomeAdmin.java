@@ -5,8 +5,7 @@ import view.Frame;
 import javax.swing.*;
 import java.awt.*;
 
-import static assets.Assets.fontButton;
-import static assets.Assets.fontHeader;
+import static assets.Assets.*;
 
 public class HomeAdmin extends Frame {
     JButton bt1, bt2, bt3, bt4;
@@ -28,7 +27,7 @@ public class HomeAdmin extends Frame {
         bt1.setFont(fontButton);
         bt1.setBounds(80, 220, 230, 24);
         bt1.setFocusPainted(false);
-        bt1.setBackground(new Color(135, 206, 250));
+        bt1.setBackground(colorButton);
         bt1.setForeground(Color.WHITE);
         add(bt1);
 
@@ -36,7 +35,7 @@ public class HomeAdmin extends Frame {
         bt2.setFont(fontButton);
         bt2.setBounds(80, 260, 230, 24);
         bt2.setFocusPainted(false);
-        bt2.setBackground(new Color(135, 206, 250));
+        bt2.setBackground(colorButton);
         bt2.setForeground(Color.WHITE);
         add(bt2);
 
@@ -44,7 +43,7 @@ public class HomeAdmin extends Frame {
         bt3.setFont(fontButton);
         bt3.setBounds(80, 300, 230, 24);
         bt3.setFocusPainted(false);
-        bt3.setBackground(new Color(135, 206, 250));
+        bt3.setBackground(colorButton);
         bt3.setForeground(Color.WHITE);
         add(bt3);
 
@@ -52,7 +51,7 @@ public class HomeAdmin extends Frame {
         bt4.setFont(fontButton);
         bt4.setBounds(80, 340, 230, 24);
         bt4.setFocusPainted(false);
-        bt4.setBackground(new Color(135, 206, 250));
+        bt4.setBackground(colorButton);
         bt4.setForeground(Color.WHITE);
         add(bt4);
 

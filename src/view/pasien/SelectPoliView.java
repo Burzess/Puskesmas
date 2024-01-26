@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static assets.Assets.colorButton;
+
 public class SelectPoliView extends Frame {
     JLabel titleLabel;
     Pasien pasien;
@@ -41,7 +43,7 @@ public class SelectPoliView extends Frame {
         for (JButton button : poliButtons) {
             button.setMargin(new Insets(10, 10, 10, 10));
             button.setFocusPainted(false);
-            button.setBackground(new Color(135, 206, 250));
+            button.setBackground(colorButton);
             poliPanel.add(button);
             button.addActionListener(e -> {
                     String selectedPoli = button.getText();
@@ -85,6 +87,7 @@ public class SelectPoliView extends Frame {
 
         btnKembali = new JButton("Kembali");
         btnKembali.setFocusPainted(false);
+        btnKembali.setBackground(colorButton);
         btnKembali.setMargin(new Insets(10, 30, 30, 30));
 
         add(btnKembali, BorderLayout.SOUTH);
