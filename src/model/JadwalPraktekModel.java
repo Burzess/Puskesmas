@@ -2,10 +2,9 @@ package model;
 
 import com.google.gson.reflect.TypeToken;
 import modelGSON.ModelGSON;
-import node.JadwalPraktek;
+import entity.JadwalPraktek;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class JadwalPraktekModel {
     private static ArrayList<JadwalPraktek> listJadwalPraktek;

@@ -1,6 +1,6 @@
 package view.admin;
 import controller.PoliController;
-import node.Poli;
+import entity.Poli;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

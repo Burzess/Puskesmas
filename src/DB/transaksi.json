@@ -218,5 +218,49 @@
         }
       ]
     }
+  },
+  {
+    "idTransaksi": 5,
+    "antrean": {
+      "index": 1,
+      "pasien": {
+        "idPasien": 5,
+        "namaPasien": "Panjul",
+        "alamat": "SBY",
+        "gender": "Laki-laki",
+        "TTL": "Surabya, 28-01-2024",
+        "NIK": "1241",
+        "BPJS": ""
+      },
+      "poli": "Umum"
+    },
+    "pasien": {
+      "idPasien": 5,
+      "namaPasien": "Panjul",
+      "alamat": "SBY",
+      "gender": "Laki-laki",
+      "TTL": "Surabya, 28-01-2024",
+      "NIK": "1241",
+      "BPJS": ""
+    },
+    "poli": {
+      "idPoli": 0,
+      "namaPoli": "Umum",
+      "antrians": [
+        {
+          "index": 1,
+          "pasien": {
+            "idPasien": 5,
+            "namaPasien": "Panjul",
+            "alamat": "SBY",
+            "gender": "Laki-laki",
+            "TTL": "Surabya, 28-01-2024",
+            "NIK": "1241",
+            "BPJS": ""
+          },
+          "poli": "Umum"
+        }
+      ]
+    }
   }
 ]

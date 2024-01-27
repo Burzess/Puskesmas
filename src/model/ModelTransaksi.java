@@ -2,7 +2,7 @@ package model;
 
 import com.google.gson.reflect.TypeToken;
 import modelGSON.ModelGSON;
-import node.Transaksi;
+import entity.Transaksi;
 
 import java.util.ArrayList;
 

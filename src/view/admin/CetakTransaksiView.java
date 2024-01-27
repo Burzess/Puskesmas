@@ -3,7 +3,7 @@ package view.admin;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import controller.TransaksiController;
-import node.Transaksi;
+import entity.Transaksi;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

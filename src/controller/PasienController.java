@@ -1,7 +1,7 @@
 package controller;
 
 import model.ModelPasien;
-import node.Pasien;
+import entity.Pasien;
 
 public class PasienController {
     private ModelPasien modelPasien;

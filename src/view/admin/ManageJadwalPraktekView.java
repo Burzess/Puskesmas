@@ -2,7 +2,7 @@ package view.admin;
 
 import controller.JadwalPraktekController;
 import controller.PoliController;
-import node.JadwalPraktek;
+import entity.JadwalPraktek;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

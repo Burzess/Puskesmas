@@ -2,8 +2,8 @@ package view.admin;
 
 import controller.PoliController;
 import controller.TransaksiController;
-import node.Antrian;
-import node.Poli;
+import entity.Antrian;
+import entity.Poli;
 import view.Frame;
 import view.pasien.HomePasien;
 

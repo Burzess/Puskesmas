@@ -2,8 +2,8 @@ package model;
 
 import com.google.gson.reflect.TypeToken;
 import modelGSON.ModelGSON;
-import node.Antrian;
-import node.Poli;
+import entity.Antrian;
+import entity.Poli;
 
 import java.util.ArrayList;
 

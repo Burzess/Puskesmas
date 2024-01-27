@@ -34,5 +34,14 @@
     "TTL": "Alor, 31-01-2000",
     "NIK": "456",
     "BPJS": ""
+  },
+  {
+    "idPasien": 5,
+    "namaPasien": "Panjul",
+    "alamat": "SBY",
+    "gender": "Laki-laki",
+    "TTL": "Surabya, 28-01-2024",
+    "NIK": "1241",
+    "BPJS": ""
   }
 ]
