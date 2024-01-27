@@ -1,9 +1,9 @@
 package view.pasien;
 
 import controller.PoliController;
-import node.Antrian;
-import node.Pasien;
-import node.Poli;
+import entity.Antrian;
+import entity.Pasien;
+import entity.Poli;
 import view.Frame;
 
 import javax.swing.*;

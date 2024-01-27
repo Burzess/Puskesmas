@@ -1,4 +1,4 @@
-package node;
+package entity;
 
 public class Transaksi {
     public int idTransaksi;

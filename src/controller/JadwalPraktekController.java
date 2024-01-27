@@ -1,7 +1,7 @@
 package controller;
 
 import model.JadwalPraktekModel;
-import node.JadwalPraktek;
+import entity.JadwalPraktek;
 
 import java.util.List;
 

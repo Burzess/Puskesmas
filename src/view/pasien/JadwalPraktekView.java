@@ -1,6 +1,6 @@
 package view.pasien;
 import controller.JadwalPraktekController;
-import node.JadwalPraktek;
+import entity.JadwalPraktek;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

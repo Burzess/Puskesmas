@@ -2,9 +2,9 @@ package controller;
 
 import model.ModelAntrain;
 import model.ModelPoli;
-import node.Antrian;
-import node.Pasien;
-import node.Poli;
+import entity.Antrian;
+import entity.Pasien;
+import entity.Poli;
 
 import java.util.ArrayList;
 

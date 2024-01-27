@@ -1,13 +1,12 @@
 package controller;
 
-import model.ModelAntrain;
 import model.ModelPasien;
 import model.ModelPoli;
 import model.ModelTransaksi;
-import node.Antrian;
-import node.Pasien;
-import node.Poli;
-import node.Transaksi;
+import entity.Antrian;
+import entity.Pasien;
+import entity.Poli;
+import entity.Transaksi;
 
 import java.util.List;
 

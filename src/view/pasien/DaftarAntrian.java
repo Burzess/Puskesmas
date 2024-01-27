@@ -1,7 +1,7 @@
 package view.pasien;
 
 import controller.PasienController;
-import node.Pasien;
+import entity.Pasien;
 import view.Frame;
 
 import javax.swing.*;
