@@ -1,3 +1,6 @@
+NAMA: MAS IBRAHIM HALIM
+NPM: 06.2022.1.07619
+
 Project TA dengan STUDI KASUS: Nomer Antrian Puskesmas
 
 FITUR:
